@@ -68,14 +68,15 @@ var renderAsJSON = function (res, obj) {
 
 app.get('/', routes.index);
 
-app.get('/SchoolCourse.json', function(req, res) {
+app.get('/readData.json', function(req, res) {
     var t = timediff();
+    //req.params.table
     dbquery('foo', function(collection) {
         collection.find({}, {limit: 65535}).toArray(function(err, docs) {
             renderAsJSON(res, {'results': docs});
+            console.log(t());
         });
     });
-    console.log(t());
 });
 
 app.listen(process.env.PORT || 3000);

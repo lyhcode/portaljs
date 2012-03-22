@@ -7,7 +7,7 @@ Ext.define('Module.SchoolCourse.RegisterCourse.Store1', {
     fields: ['semcourseid', 'coursetypename', 'semcoursename', 'teachername', 'coursetime_view', 'roomname', 'maxcount', 'selectedcount'],
     proxy: {
         type: 'ajax',
-        url: __ajax_url_prefix+'SchoolCourse.json',
+        url: __ajax_url_prefix+'readData.json?table=semcourse',
         reader: {
             type: 'json',
             root: 'results'
@@ -37,23 +37,6 @@ Ext.define('Module.SchoolCourse.RegisterCourse.Store2', {
     }
 });
 Ext.create('Module.SchoolCourse.RegisterCourse.Store2');
-
-Ext.define('Module.SchoolCourse.RegisterCourse.Store3', {
-    extend: 'Ext.data.Store',
-    storeId: 'SchoolCourse-RegisterCourse-Store3',
-    fields:['num1', 'num2', 'num3', 'num4', 'num5'],
-    data:{'results':[
-        {num1: 1, num2: 2, num3: 3, num4: 4, num5: 5}
-    ]},
-    proxy: {
-        type: 'memory',
-        reader: {
-            type: 'json',
-            root: 'results'
-        }
-    }
-});
-Ext.create('Module.SchoolCourse.RegisterCourse.Store3');
 
 var changeFilterHandler = function(val) {
     var store = Ext.data.StoreManager.lookup('SchoolCourse-RegisterCourse-Store1');
@@ -86,6 +69,8 @@ Ext.define('Module.SchoolCourse.RegisterCourse.Grid1', {
             align: 'center',
             items: [{
                 icon: 'images/icons/accept.png',
+                text: 'test',
+                xtype: 'button',
                 tooltip: '加選',
                 handler: function(grid, rowIndex, colIndex) {
 
